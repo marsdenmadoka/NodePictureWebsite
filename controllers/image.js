@@ -1,7 +1,7 @@
 
 
 module.exports = {
-    index: function(req, res) {
+image: function(req, res) {
 
         var viewModel = {
             image: {
@@ -31,19 +31,20 @@ module.exports = {
             }
         ]
     };
-        res.render('image',viewModel);
-        },
-        
-        create: function(req, res) {
-        res.send('The image:create POST controller');
-        },
 
-        like: function(req, res) {
-        res.send('The image:like POST controller');
-        },
+res.render('image',viewModel);
+},
 
-        comment: function(req, res) {
-        res.send('The image:comment POST controller');
-        }
+create: function(req, res) {
+res.send('The image:create POST controller');
+},
+
+like: function(req, res) {
+res.send('The image:like POST controller');
+},
+
+comment: function(req, res) {
+res.send('The image:comment POST controller');
+}
 
     };
