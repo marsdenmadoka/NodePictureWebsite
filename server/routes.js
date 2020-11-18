@@ -6,7 +6,7 @@ var express = require('express'),
 
 
 module.exports = function(app) {
-    router.get('/', home.index);
+    router.get('/', home.index);//index.handlebars and home.js in controller
     router.get('/images/:image_id', image.index);
     router.post('/images', image.create);
     router.post('/images/:image_id/like', image.like);
