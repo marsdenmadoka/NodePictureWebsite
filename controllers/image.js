@@ -72,7 +72,8 @@ create: function(req, res) { //when a user submits and uploads a new image
 
 
 like: function(req, res) {
-res.send('The image:like POST controller');
+    res.json({likes: 1});
+//res.send('The image:like POST controller');
 },
 
 
