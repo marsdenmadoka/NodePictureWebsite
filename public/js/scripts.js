@@ -6,7 +6,7 @@ $('#post-comment').hide();
     $('#post-comment').show();
 });
 
-
+       //used AJAX to track likes instead of relying on afull page postback.
  $('#btn-like').on('click', function(event) {//attaches an onClick event handler to the btn-like button.
         event.preventDefault();
         var imgId = $(this).data('id');//first retrieves the data-id attribute from the Like button itself
