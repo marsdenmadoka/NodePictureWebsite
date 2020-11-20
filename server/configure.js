@@ -8,7 +8,7 @@ var path = require('path'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler');
     moment = require('moment');
-   // multer = require('multer');
+    multer = require('multer');
     //upload = multer({ dest:path.join(__dirname,'public/upload/temp')})
 
 module.exports = function(app) { //moving the routes to the routes folder
