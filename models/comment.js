@@ -1,8 +1,10 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema,
 path = require('path');
+ObjectId = Schema.ObjectId;
+
 var CommentSchema = new Schema({
-    image_id:{type:String},
+    image_id:{type:ObjectId}, //we will link this id to our image
     email:{type:String},
     name:{type:String},
     gravatar:{type:String},
