@@ -3,6 +3,7 @@ var fs = require('fs'),
 path = require('path');
 var sidebar = require('../helpers/sidebar');
 Models = require('../models');
+md5 = require('MD5');
 
 module.exports = {
 
@@ -61,6 +62,7 @@ create: function(req, res) { //when a user submits and uploads a new image
             saveImage();
             } else {
             //Here, we declare three variables; where our uploaded files will be stored temporarily,
+            //We tweaked the create function to insert a new image model into the database once it has been successfully renamed and saved to the filesystem.
             var tempPath = req.files.file.path,
               ext = path.extname(req.files.file.name).toLowerCase(),
               targetPath = path.resolve('./public/upload/' + imgUrl + ext);
@@ -98,7 +100,7 @@ like: function(req, res) {
     function(err, image) {
  // assuming we get a valid image model response from the query, we'll then increment its likes property, and since the model is then modified,we need to execute its save function.
     if (!err && image) {//"if the err object is false (that is null) and the image object is true(not null)
-    image.likes = image.likes + 1;
+    image.likes = image.likes + 1; //likes is from our models/image.js 
     image.save(function(err) {
     if (err) {
     res.json(err);
@@ -112,10 +114,27 @@ like: function(req, res) {
 },
 
 comment: function(req, res) {
-res.send('The image:comment POST controller');
-}
+//res.send('The image:comment POST controller');
+Models.Image.findOne({ filename: { $regex: req.params.image_id }},
+    function(err, image) {
+    if (!err && image) {//Assuming a valid image is returned as a match, 
+        var newComment = new Models.Comment(req.body);//we create a new comment object called newComment and actually pass the entire HTML form body into the constructor That's identical to what we would have built manually anyway, so we just take a shortcut and pass the whole thing in as it is
+       // console.log(req.body)
+        newComment.gravatar = md5(newComment.email);//First, we manually set a gravatar property, which is where we will store the MD5 hash value of the commenter's e-mail address so that we can retrieve their Gravatar profile picture. 
+    //Gravatar is a universal avatar service that stores profile pictures based on a user's e-mail address.
+        newComment.image_id = image._id; //we set the image_id property of newComment to the _id property of theimage we found at the beginning of the function
+        newComment.save(function(err, comment) {
+        if (err) { throw err; }
+        res.redirect('/images/' + image.uniqueId + '#' + comment._id);//redirect the user back to the image page.
+        //we append a bookmark to the new comment's _id to the URL so that when the page loads it will automatically scroll down to the users' comments that have just been posted.
+        });
+    } else {
+    res.redirect('/');
+           }
+        });
+    }
 
-    };
+};
 
 
 

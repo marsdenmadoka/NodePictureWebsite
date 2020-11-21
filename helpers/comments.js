@@ -1,7 +1,8 @@
-// he comments module will return a collection of the newest comments posted to the site.
+// the comments module will return a collection of the newest comments posted to the site.
 //The idea of particular interest is that each comment also has an image attached to it so that the actual image for each comment
 //can be displayed as a thumbnail while displaying the list of comments
 
+//THIS MODULE IS TO DISPLAY THE NEWEST COMMENTS ONLY
 module.exports = {
     newest: function() {
     var comments = [
