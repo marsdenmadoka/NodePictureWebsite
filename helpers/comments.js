@@ -9,16 +9,17 @@ module.exports = {
     },
     function(err, comments){
     // attach an image to each comment...
-    var attachImage = function(comment, next) {//The next callback as the second parameter is important because it's the key to how async is able to function
-        models.Image.findOne({ _id : comment.image_id},
+    var attachImage = function(comment, next) {//The next callback as the second parameter is important because it's the key to how async is able to function,it acts as a chain link
+        models.Image.findOne({ _id : comment.image_id}, //attachImage function will query MongoDB to find an image with an _id value that is the same as the image_id property of the comment that was passed into it as the first parameter.
         function(err, image) {
         if (err) throw err;
-        comment.image = image;
+        comment.image = image;//Once that image is found, it is attached to the comment via its image property and then the next callback function is executed
         next(err);
         });
         };
-        //we need to use the each function of async to apply that function to every item in the comments collection:
- async.each(comments, attachImage,
+        //After we have defined the attachImage function, we need to use the each function of async to apply that function to every item in the comments collection:
+       //each function of async will loop through every item in the collection in the first parameter, and send each item as a parameter to a callback function in the second parameter
+        async.each(comments, attachImage,//Pass the attachImage function as the second parameter, which is the function that will be called for every comment in the comment's array.
             function(err) {
             if (err) throw err;
             callback(err, comments);
