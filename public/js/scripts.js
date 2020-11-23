@@ -15,6 +15,27 @@ $('#post-comment').hide();
         });
  });
 
+ //delete our image
+ $('#btn-delete').on('click', function(event) {
+       event.preventDefault();
+       var $this = $(this);
+       var remove = confirm('Are you sure you want to delete this image?');
+       if (remove) {
+       var imgId = $(this).data('id');
+       $.ajax({
+       url: '/images/' + imgId, //if true
+       type: 'DELETE'
+       }).done(function(result) {
+              //Assuming the server responds with a true value, we will turn the button green and change the icon to a checkmark with the word Deleted!
+       if (result) {
+       $this.removeClass('btn-danger').addClass('btn-success');
+       $this.find('i').removeClass('fa-times').addClass('fa-check');
+       $this.append('<span> Deleted!</span>');
+       }
+       });
+       }
+       });
+
  });
 
 //  The event.preventDefault() part is important because if we didn't include that, the action of

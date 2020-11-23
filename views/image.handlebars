@@ -1,20 +1,28 @@
 <div class="panel panel-primary">
 <div class="panel-heading">
-<h2 class="panel-title">{{ image.title }}</h2>
+<h2 class="panel-title">{{ image.title }}</h2> {{!-- image.title is the title we fetch from our image model in models/imae.js/ --}}
 </div>
 <div class="panel-body">
-<p>{{ image.description }}</p>
+<p>{{ image.description }}</p>{{!-- image.description is the descrption we fetch from our image model in models/imae.js/ --}}
 <div class="col-md-12 text-center">
-<img src="/public/upload/{{image.filename}}" class="img-thumbnail">
+<img src="/public/upload/{{image.filename}}" class="img-thumbnail">{{!-- image.filename is the filename we fetch from our image model in models/imae.js/ --}}
 </div>
 </div>
 <div class="panel-footer">
 <div class="row">
 
 <div class="col-md-8">
-<button class="btn btn-success" id="btn-like" data-id="{{ image.uniqueId }}">
-<i class="fa fa-heart">Like</i>
+<button class="btn btn-success" id="btn-like" data-id="{{ image.uniqueId }}"> 
+<i class="fa fa-heart">Like</i> {{!-- more code in our public/js/script file to see the functionality --}}
 </button>
+<div class="col-md-8"><button class="btnbtn-success" id="btn-like"> </div>
+
+  <div class="col-md-4 text-right"> 
+<button class="btnbtn-danger" id="btn-delete" data-id="{{image.uniqueId }}">  {{!-- more code in our public/js/script file to see the functionality --}}
+<i class="fafa-times"></i>
+</button>
+</div>
+
 
 <strong class="likes-count">{{ image.likes }}</strong> &nbsp; - &nbsp;
  <i class="fa fa-eye"></i> 

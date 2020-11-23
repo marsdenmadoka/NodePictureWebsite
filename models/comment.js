@@ -4,7 +4,7 @@ ObjectId = Schema.ObjectId;
 
 var CommentSchema = new Schema({
     image_id:{type:ObjectId}, //field labeled image_id , which has an ObjectId type. We're going to use this
-                           // field to store the relationship between comment and image that it was posted to
+                      // field to store the relationship between comment and image that it was posted to
     email:{type:String},
     name:{type:String},
     gravatar:{type:String},
