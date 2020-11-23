@@ -7,11 +7,11 @@ async = require('async');
 module.exports = function(viewModel, callback){
   async.parallel([//we basically wrapped our existing code and integrated it into async.parallel so that we can easily tweak it a little later as we update each section of the sidebar helpers
         function(next) {
-        next(null, Stats()); //our Stats function in the helpers/stats
+            Stats(next); //our Stats function in the helpers/stats
         },
 
         function(next) {
-        next(null, Images.popular()); //our popular function in the helpers/images
+            Images.popular(callback); //our popular function in the helpers/images
         },
 
         function(next) {

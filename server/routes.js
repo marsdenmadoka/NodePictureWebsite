@@ -20,9 +20,9 @@ module.exports = function(app) {
           Image.create//create function in the controller image.js//when a user submits and uploads a new image
         })
     });
-
     router.post('/images/:image_id/like', Image.like);//like function in the controller image.js//when a user clicks the Like button
     router.post('/images/:image_id/comment', Image.comment);//comment function in the controller image.js//when a user posts a  comment)
+    router.delete('/images/:image_id', Image.remove);
     app.use(router);
 
 };

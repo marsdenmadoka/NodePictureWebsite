@@ -132,7 +132,37 @@ Models.Image.findOne({ filename: { $regex: req.params.image_id }},
     res.redirect('/');
            }
         });
-    }
+    },
+
+
+remove: function(req, res) { //deting our picture
+Models.Image.findOne({ filename: { $regex: req.params.image_id } },
+        function(err, image) {
+            if (err) { throw err; }
+
+            fs.unlink(path.resolve('./public/upload/' + image.filename),//we also remove it in the filesystem  /the file associated with the image should be deleted.
+            function(err) {
+            if (err) { throw err; }       
+    
+        Models.Comment.remove({ image_id: image._id}, // find the comments associated with the image and delete them
+            function(err) {
+
+            image.remove(function(err) { //the last step is to remove the image itself from the db the  image variable comes from the second parameter of our db.findOne
+            if (!err) {
+            res.json(true);//Assuming all of that was a success, simply send a true Boolean JSON response back to the browser.
+            } else {
+            res.json(false);
+            }
+            
+              });
+          
+         });
+        
+      });
+  
+     });
+          }
+
 
 };
 
