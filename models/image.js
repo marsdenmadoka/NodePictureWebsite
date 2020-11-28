@@ -10,9 +10,9 @@ var ImageSchema = new Schema({
     timestamp:{type:Date,'default':Date.now},
 });
 
-ImageSchema.virtual('uniqueId')
+ImageSchema.virtual('uniqueId')//We created a virtual property of uniqueId , which is just the filename with the file extension removed
 .get(function() { //We created a virtual property of uniqueId , which is just the filename with the file extension removed
-return this.filename.replace(path.extname(this.filename), '');
+return this.filename.replace(path.extname(this.filename), '');// file namereturn the
 });
 
 module.exports = mongoose.model('Image', ImageSchema);

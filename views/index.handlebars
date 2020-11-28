@@ -44,6 +44,7 @@
 displaying each image as a thumbnail and the link to the image page --}}
 
 {{#each images}} 
+{{!--in our models/image.js We created a virtual property of uniqueId--}}
 {{!-- images from our home.js since it our home.js that renders this index.handlebars --}}
 <div class="col-md-4 text-center" style="padding-bottom:1em;">
     <a href="/images/{{ uniqueId }}"> {{!--when you click the image.. '/images/:image_id' in the routes folder, --}}
