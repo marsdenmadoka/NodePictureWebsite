@@ -15,6 +15,6 @@ ImageSchema.virtual('uniqueId')//We created a virtual property of uniqueId , whi
 return this.filename.replace(path.extname(this.filename), '');// file namereturn the
 });
 
-module.exports = mongoose.model('Image', ImageSchema);
+module.exports = mongoose.model('Image', ImageSchema); //we export the model whicn we just named it('Image') and not the schema
 
     

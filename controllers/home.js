@@ -1,6 +1,7 @@
 //fetching our data from mongodb and displaying it to our index.handlebars
 var sidebar = require('../helpers/sidebar');
 ImageModel = require('../models').Image;
+
     module.exports = {
         home: function(req, res) {
 

@@ -17,5 +17,7 @@ CommentSchema.virtual('image').set(function(image){
     }).get(function() {
     return this._image;
     });
+//define virtual on the comment schema labeled image , which we provide a getter and setter for. The image virtual property will be how we attach the related
+//image when we retrieve comments later in our controllers. For every comment, we are going to iterate through and look up its associated image and attach that image object as a property of the comment
     module.exports = mongoose.model('Comment', CommentSchema);
     
