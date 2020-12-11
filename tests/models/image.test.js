@@ -55,6 +55,7 @@ describe('Image Model', function() {
            });
       });
   });
-
+    // When testing the uniqueId virtual, it should return the image model's filename
+    // without the extension. As the beforeEach defined our image model with a filename of testfile.jpg ,
 
 })
