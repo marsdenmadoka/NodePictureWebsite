@@ -8,7 +8,7 @@ var express = require('express'),
 
     // multer = require('multer');
     // upload = multer({ dest:path.join(__dirname,'public/upload/temp')})
-module.exports = function(app) {
+module.exports = function(app) { //include the .initialize when writting the test
     router.get('/', Home.home);//var Home and controller home funtion in home.js //render the index.handlesbars of the site
     router.get('/images/:image_id', Image.image);//image function in the controller image.js
 
